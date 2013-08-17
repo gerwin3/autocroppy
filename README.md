@@ -19,7 +19,9 @@ python autocroppy [input_folder] [output_folder]
 	- output_folder (optional): where to put the processed images, defaults to 'out'
 ```
 
-autocroppy will look for any .jpg files and process them.
+autocroppy will look for any .jpg files in the input folder, then process the image, and place it in the output folder with the same name. This behavior can be altered by tweaking the source code.
+
+Download the files and run autocroppy without any arguments, and the 3 test images will be processed and placed in the folder out without black borders.
 
 Tweaking
 --------
