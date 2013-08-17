@@ -13,10 +13,11 @@ Get Started
 Usage
 -----
 
-``python autocroppy [input_folder] [output_folder]
+```
+python autocroppy [input_folder] [output_folder]
 	- input_folder (optional): where to grab images from, defaults to the current directory
 	- output_folder (optional): where to put the processed images, defaults to 'out'
-``
+```
 
 autocroppy will look for any .jpg files and process them.
 
@@ -25,11 +26,11 @@ Tweaking
 
 If you're looking for a great autocrop algorithm or you want to tweak autocroppy to your needs, this is what you must know.
 
-autocroppy.py is the main file, it contains the code that selects the files and the user interface stuff. If you want to run autocroppy more carefully you can set INTERACTIVE_MODE (at the top of the file) to True. autocroppy will now show the original and processed image and ask you if you want to store the result.
+autocroppy.py is the main file, it contains the code that selects the files and the user interface stuff. If you want to run autocroppy more carefully you can set `INTERACTIVE_MODE` (at the top of the file) to True. autocroppy will now show the original and processed image and ask you if you want to store the result.
 
 autocropper.py contains the `AutoCropper` class which you can use for your own programs. Here is some example code.
 
-``
+```
 import cv2
 from autocropper import AutoCropper
 
@@ -42,6 +43,6 @@ ac.tolerance = 10 			# defaults to 4, a gray value is more likely to be consider
 
 # go!
 result = ac.autocrop()
-``
+```
 
 
