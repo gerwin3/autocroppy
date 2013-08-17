@@ -5,7 +5,7 @@ class AutoCropper:
     
     max_border_size = 300   # maximum border to remove after initial crop (so not guaranteed!)
     safety_margin = 4       # extra border removed to make sure we have no black pixels
-    treshold = 4            # maximum gray-value to consider black
+    tolerance = 4           # maximum gray-value to consider black
     
     def __init__(self, img):
         self.img = img
@@ -13,7 +13,7 @@ class AutoCropper:
     def __borders_left_top(self, img):
         c = self.max_border_size
         while c > 0:
-            if img[c, c] < self.treshold and img[c-1,c-1] < self.treshold and img[c-2,c-2] < self.treshold:
+            if img[c, c] < self.tolerance and img[c-1,c-1] < self.tolerance and img[c-2,c-2] < self.tolerance:
                 return c, c
             c -= 1 
         return 0, 0
@@ -21,7 +21,7 @@ class AutoCropper:
     def __borders_left_bottom(self, img):
         c = self.max_border_size
         while c > 0:
-            if img[-c, c] < self.treshold and img[-(c-1), c-1] < self.treshold and img[-(c-2), c-2] < self.treshold:
+            if img[-c, c] < self.tolerance and img[-(c-1), c-1] < self.tolerance and img[-(c-2), c-2] < self.tolerance:
                 return c, img.shape[0]-c
             c -= 1
         return 0, img.shape[0]
@@ -29,7 +29,7 @@ class AutoCropper:
     def __borders_right_top(self, img):
         c = self.max_border_size
         while c > 0:
-            if img[c, -c] < self.treshold and img[c-1, -(c-1)] < self.treshold and img[c-2, -(c-2)] < self.treshold:
+            if img[c, -c] < self.tolerance and img[c-1, -(c-1)] < self.tolerance and img[c-2, -(c-2)] < self.tolerance:
                 return img.shape[1]-c, c
             c -= 1
         return img.shape[1], 0
@@ -37,7 +37,7 @@ class AutoCropper:
     def __borders_right_bottom(self, img):
         c = self.max_border_size
         while c > 0:
-            if img[-c, -c] < self.treshold and img[-(c-1), -(c-1)] < self.treshold and img[-(c-2), -(c-2)] < self.treshold:
+            if img[-c, -c] < self.tolerance and img[-(c-1), -(c-1)] < self.tolerance and img[-(c-2), -(c-2)] < self.tolerance:
                 return img.shape[1]-c, img.shape[0]-c
             c -= 1
         return img.shape[1], img.shape[0]
@@ -47,7 +47,7 @@ class AutoCropper:
     # slides or pages
     def autocrop(self):
         
-        # apply a treshold on a gray version of the image to
+        # apply a tolerance on a gray version of the image to
         # select the non-black pixels
         gray = cv2.cvtColor(self.img, cv2.COLOR_BGR2GRAY)
         _, threshold = cv2.threshold(gray, 1, 255, cv2.THRESH_BINARY)
